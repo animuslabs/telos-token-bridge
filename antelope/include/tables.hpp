@@ -1,4 +1,5 @@
 #pragma once
+#include <constants.hpp>
 
 using namespace std;
 using namespace eosio;
@@ -17,7 +18,7 @@ namespace evm_bridge {
 
     //======================== Tables ========================
     // Bridge requests
-    struct [[eosio::table, eosio::contract("token.brdg")]] requests {
+    struct [[eosio::table, eosio::contract(CONTRACT_NAME)]] requests {
         uint64_t request_id;
         eosio::checksum256 call_id;
         time_point timestamp;
@@ -34,7 +35,7 @@ namespace evm_bridge {
     >  requests_table;
 
     // Bridge refunds
-    struct [[eosio::table, eosio::contract("token.brdg")]] refunds {
+    struct [[eosio::table, eosio::contract(CONTRACT_NAME)]] refunds {
         uint64_t refund_id;
         eosio::checksum256 call_id;
         time_point timestamp;
@@ -51,7 +52,7 @@ namespace evm_bridge {
     >  refunds_table;
 
     // Config
-    struct [[eosio::table, eosio::contract("token.brdg")]] bridgeconfig {
+    struct [[eosio::table, eosio::contract(CONTRACT_NAME)]] bridgeconfig {
         eosio::checksum160 evm_bridge_address;
         eosio::checksum160 evm_register_address;
         uint64_t evm_bridge_scope;

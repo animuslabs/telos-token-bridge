@@ -1,6 +1,6 @@
 // @author Thomas Cuvillier
 // @organization Telos Foundation
-// @contract token.brdg
+// @contract tokenBridge
 // @version v1.0
 
 // EOSIO
@@ -32,7 +32,7 @@ using namespace intx;
 
 namespace evm_bridge
 {
-    class [[eosio::contract("token.brdg")]] tokenbridge : public contract {
+    class [[eosio::contract(CONTRACT_NAME)]] tokenbridge : public contract {
         public:
             using contract::contract;
             tokenbridge(name self, name code, datastream<const char*> ds) : contract(self, code, ds), config_bridge(self, self.value), config(EVM_SYSTEM_CONTRACT, EVM_SYSTEM_CONTRACT.value) { };

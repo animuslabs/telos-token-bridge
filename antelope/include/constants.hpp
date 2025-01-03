@@ -1,4 +1,5 @@
 #pragma once
+#include <eosio/eosio.hpp>
 
 // Adds superpower testing functions (required for running cpp tests/clearing data in contract)
 #define TESTING true
@@ -6,20 +7,15 @@
 // Crypto
 #define MBEDTLS_ASN1_OCTET_STRING 0x04
 
+// contract name
+#define CONTRACT_NAME_MACRO CONTRACT_NAME
+#define CHAIN_ID_MACRO CHAIN_ID
+
 namespace evm_bridge
 {
-  struct ChainIDs
-  {
-    static constexpr size_t TELOS_MAINNET        = 40;
-    static constexpr size_t TELOS_TESTNET        = 41;
-  };
-
   static constexpr auto WORD_SIZE       = 32u;
-  // Constant chain ID determined at COMPILE time
-  static constexpr size_t CURRENT_CHAIN_ID = ChainIDs::TELOS_TESTNET;
-  static constexpr eosio::name ESCROW = eosio::name("escrow.brdg");
+  static constexpr size_t CURRENT_CHAIN_ID = CHAIN_ID_MACRO;
   static constexpr eosio::name EVM_SYSTEM_CONTRACT = eosio::name("eosio.evm");
-  static constexpr eosio::name TOKEN_CONTRACT = eosio::name("eosio.token");
   static constexpr uint64_t SIGN_REGISTRATION_GAS = 250000; // Todo: find exact needed gas
   static constexpr uint64_t REFUND_CB_GAS = 250000; // Todo: find exact needed gas
   static constexpr uint64_t SUCCESS_CB_GAS = 250000; // Todo: find exact needed gas

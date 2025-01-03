@@ -1,9 +1,11 @@
 // @author Thomas Cuvillier
 // @organization Telos Foundation
-// @contract token.brdg
+// @contract tokenBridge
 // @version v1.0
 
-#include "../include/token.brdg.hpp";
+#include <string> 
+#include "../include/constants.hpp"
+#include "../include/tokenBridge.hpp"
 
 namespace evm_bridge
 {
@@ -109,7 +111,7 @@ namespace evm_bridge
         // Find the EVM account of this contract
         account_table _accounts(EVM_SYSTEM_CONTRACT, EVM_SYSTEM_CONTRACT.value);
         auto accounts_byaccount = _accounts.get_index<"byaccount"_n>();
-        auto evm_account = accounts_byaccount.require_find(get_self().value, "EVM account not found for token.brdg");
+        auto evm_account = accounts_byaccount.require_find(get_self().value, ("EVM account not found for " + std::string(CONTRACT_NAME)).c_str());
 
         // Define EVM Account State table with EVM register contract scope
         account_state_table register_account_states(EVM_SYSTEM_CONTRACT, conf.evm_register_scope);
@@ -295,7 +297,7 @@ namespace evm_bridge
         // Find the EVM account of this contract
         account_table _accounts(EVM_SYSTEM_CONTRACT, EVM_SYSTEM_CONTRACT.value);
         auto accounts_byaccount = _accounts.get_index<"byaccount"_n>();
-        auto evm_account = accounts_byaccount.require_find(get_self().value, "EVM account not found for token.brdg");
+        auto evm_account = accounts_byaccount.require_find(get_self().value, ("EVM account not found for " + std::string(CONTRACT_NAME)).c_str());        
 
         // Erase old requests
         requests_table requests(get_self(), get_self().value);
@@ -406,7 +408,7 @@ namespace evm_bridge
         // Find the EVM account of this contract
         account_table _accounts(EVM_SYSTEM_CONTRACT, EVM_SYSTEM_CONTRACT.value);
         auto accounts_byaccount = _accounts.get_index<"byaccount"_n>();
-        auto evm_account = accounts_byaccount.require_find(get_self().value, "No EVM account found for token.brdg");
+        auto evm_account = accounts_byaccount.require_find(get_self().value, ("EVM account not found for " + std::string(CONTRACT_NAME)).c_str());
 
         // Get token info from eosio.token stat table
         eosio_tokens token_row(account, symbol.code().raw());

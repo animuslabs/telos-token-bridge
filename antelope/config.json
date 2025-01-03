@@ -1,0 +1,7 @@
+{
+    "CONTRACT_NAME": "bridge.boid",
+    "MAINNET_URL": "https://mainnet.telos.caleos.io",
+    "TESTNET_URL": "https://testnet.telos.caleos.io",
+    "CHAIN_ID_MAINNET": 40,
+    "CHAIN_ID_TESTNET": 41
+}
